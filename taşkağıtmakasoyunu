@@ -1,0 +1,35 @@
+import random 
+
+SELECTION_LIST = ('Taş', 'Kağıt', 'Makas')
+
+print( 'Merhaba lütfen birini seçiniz:')
+user_cho = int(input("0:Taş   1:Kağıt    2:Makas  \n" ))
+
+if user_cho < 0 or  user_cho > 2 :
+  print("Lütfen doğru seçim yapınız!")
+if user_cho == 0:
+  x= "Taş"
+if user_cho == 1:
+  x= "Kağıt"
+if user_cho == 2:
+  x= "Makas"
+
+cpu = random.choice(SELECTION_LIST)
+print("Cpu seçimi" ,cpu)
+print("Sizin seçiminiz" ,x)
+
+if x == cpu:
+  print("Berabere")
+elif x == "Kağıt" and cpu== "Taş":
+  print("Siz kazandınız")
+elif x == "Kağıt" and cpu== "Makas":
+  print("Cpu kazandı")
+elif x == "Taş" and cpu== "Kağıt":
+  print("Cpu kazandı")
+elif x == "Taş" and cpu== "Makas":
+  print("Siz kazandınız")  
+elif x == "Makas" and cpu== "Taş":
+  print("Cpu kazandı")
+elif x == "Makas" and cpu== "Kağıt":
+  print("Siz kazandınız")
+
