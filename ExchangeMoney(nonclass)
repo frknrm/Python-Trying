@@ -1,0 +1,25 @@
+import requests
+import json
+
+depo = requests.get("https://api.exchangeratesapi.io/latest")
+depo = json.loads(depo.text)
+
+def para():
+  q = input("\nHoşgeldiniz Çıkmak için q yazın enter: \n")
+  if q == "q":
+    quit()
+  else:
+    x = input("Para biriminiz: ")
+    y = input("Çevirmek istediğiniz para birimi: ")
+    girenpara = float(input("Ne kadar dönüştürmek istersiniz: "))
+    cevrildi = depo["rates"][x] / depo["rates"][y]
+    tarih = depo["date"]
+    print(f"1 {y} = {cevrildi} {x} dir ({tarih} tarihinde)")
+    dönüsüm = girenpara / cevrildi
+    print(f"Alacağınız para: {dönüsüm} {y}")
+
+while True:
+  para()
+  
+def quit():
+  exit 
