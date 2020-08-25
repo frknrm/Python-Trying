@@ -1,0 +1,28 @@
+import requests
+import json
+
+depo = requests.get("https://api.exchangeratesapi.io/latest")
+depo = json.loads(depo.text)
+
+class paralar():
+  def __init__(self,kendi,karşı,girilenpara):
+    self.kendi = kendi
+    self.karşı = karşı
+    self.depo = depo
+    self.girilenpara = girilenpara
+    self.dönüştür()
+
+  def dönüştür(self):
+    self.cevrildi = self.depo["rates"][self.kendi] / self.depo["rates"][self.karşı]
+    self.dönüsüm = self.girilenpara / self.cevrildi
+    
+  def yazdır(self,*args):
+    print(f"1 {self.kendi} = {0.1 * self.cevrildi} {self.karşı} dir")
+    print(f"Alacağınız para: {self.dönüsüm} {self.karşı}")
+
+while True:
+  kendi = input("Para biriminiz: ")  
+  karşı = input("Çevirmek istediğiniz para birimi: ") 
+  girilenpara = float(input("Ne kadar dönüştürmek istersiniz: "))
+  x = paralar(kendi,karşı,girilenpara)
+  x.yazdır()
