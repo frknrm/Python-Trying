@@ -1,0 +1,33 @@
+import requests
+
+class movie():
+  def __init__(self,):
+    self.api = requests.post("https://api.themoviedb.org/3/movie/550?api_key=f67db92ed2558c5ddc5c22cbc6d5f7c7")
+
+
+  def trendler(self):
+    self.trend= requests.get("      https://api.themoviedb.org/3/trending/movie/week?api_key=f67db92ed2558c5ddc5c22cbc6d5f7c7")
+    return self.trend.json()
+
+  def filmara(self,filmadı):
+    self.film = requests.get("https://api.themoviedb.org/3/search/movie?api_key=f67db92ed2558c5ddc5c22cbc6d5f7c7&query="+ filmadı)
+    return self.film.json()
+
+
+film = movie()
+
+
+while True:
+  secim = input("1-Trendler\n2-Film ara\n0-Çıkış\nSeçiminiz:")
+  if secim == "0":
+    break
+  elif secim == "1":
+    trends = film.trendler()
+    print("Bu Haftaki hit filmler:")
+    for i in trends["results"]:
+      print("\n\nFilmin Adı:"+i["title"],"\nPopülerlik:"+ str(i["popularity"]),"\nÇıkış Tarihi:"+str(i["release_date"]),"\nFilmin açıklaması:"+i["overview"])
+  elif secim == "2":
+    filmadı = input("aramak istediğiniz film:")
+    x = film.filmara(filmadı)
+    for i in x["results"]:
+      print("\n\nFilmin Adı:"+i["original_title"],"\nPopülerlik:"+ str(i["popularity"]),"\nÇıkış Tarihi:"+str(i["release_date"]),"\nFilmin açıklaması:"+i["overview"])
